@@ -18,7 +18,8 @@ function App() {
             phone: "",
             cpf: "",
           }}
-          render={(isValid) => (
+        >
+          {() => (
             <form>
               <FormField>
                 <h2>Dados Pessoais</h2>
@@ -55,21 +56,19 @@ function App() {
 
               <FormField>
                 <h2>Destinos de Interesse</h2>
-                <form>
-                  <select>
-                    <option value="">Selecione um país</option>
-                  </select>
+                <select>
+                  <option value="">Selecione um país</option>
+                </select>
 
-                  <select>
-                    <option value="">Selecione uma cidade</option>
-                  </select>
-                </form>
+                <select>
+                  <option value="">Selecione uma cidade</option>
+                </select>
               </FormField>
 
-              <input type="button" value="Enviar" disabled={!isValid} />
+              <button type="submit">Enviar</button>
             </form>
           )}
-        />
+        </Formik>
       </Main>
     </>
   );
