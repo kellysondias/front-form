@@ -9,29 +9,34 @@ function App() {
       <GlobalStyle />
       <Main>
         <h1 lang="en">Frontend Travel</h1>
-        <FormField>
-          <h2>Dados Pessoais</h2>
 
-          <Formik
-            validationSchema={schema}
-            initialValues={{
-              name: "",
-              email:"",
-              phone:"",
-              cpf:""
-            }}
-            render={() => (
-              <form>
+        <Formik
+          validationSchema={schema}
+          initialValues={{
+            name: "",
+            email: "",
+            phone: "",
+            cpf: "",
+          }}
+          render={(isValid) => (
+            <form>
+              <FormField>
+                <h2>Dados Pessoais</h2>
+
                 <div>
-                  <label htmlFor="name">Nome<i>*</i>:</label>
+                  <label htmlFor="name">
+                    Nome<i>*</i>:
+                  </label>
                   <Field type="text" name="name" id="name"></Field>
-                  <ErrorMessage name="name"/>
+                  <ErrorMessage name="name" />
                 </div>
 
                 <div>
-                  <label htmlFor="email">E-mail<i>*</i>:</label>
+                  <label htmlFor="email">
+                    E-mail<i>*</i>:
+                  </label>
                   <Field type="text" name="email" id="email"></Field>
-                  <ErrorMessage name="email"/>
+                  <ErrorMessage name="email" />
                 </div>
 
                 <div>
@@ -40,32 +45,31 @@ function App() {
                 </div>
 
                 <div>
-                  <label htmlFor="cpf">CPF<i>*</i>:</label>
+                  <label htmlFor="cpf">
+                    CPF<i>*</i>:
+                  </label>
                   <Field type="number" name="cpf" id="cpf"></Field>
-                  <ErrorMessage name="cpf"/>
+                  <ErrorMessage name="cpf" />
                 </div>
-              </form>
-            )}
-          />
-        </FormField>
+              </FormField>
 
-        <FormField>
-          <h2>Destinos de Interesse</h2>
+              <FormField>
+                <h2>Destinos de Interesse</h2>
+                <form>
+                  <select>
+                    <option value="">Selecione um país</option>
+                  </select>
 
-          <Formik
-            render={() => (
-              <form>
-                <select>
-                  <option value=''>Selecione um país</option>
-                </select>
+                  <select>
+                    <option value="">Selecione uma cidade</option>
+                  </select>
+                </form>
+              </FormField>
 
-                <select>
-                  <option value=''>Selecione uma cidade</option>
-                </select>
-              </form>
-            )}
-          />
-        </FormField>
+              <input type="button" value="Enviar" disabled={!isValid} />
+            </form>
+          )}
+        />
       </Main>
     </>
   );
