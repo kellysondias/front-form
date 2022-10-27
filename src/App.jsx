@@ -18,7 +18,7 @@ function App() {
               name: "",
               email:"",
               phone:"",
-              number:""
+              cpf:""
             }}
             render={() => (
               <form>
