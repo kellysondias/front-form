@@ -7,18 +7,17 @@ import { useEffect, useState } from "react";
 async function getCountries() {
   const url = await fetch("https://amazon-api.sellead.com/country");
   const json = await url.json();
-  const countryName = json.map((country) => country.name_ptbr);
-  return countryName;
+  return json;
 }
 
 async function getCities() {
   const url = await fetch("https://amazon-api.sellead.com/city");
   const json = await url.json();
-  const cityName = json
-    .filter((city) => city.name_ptbr !== null)
-    .map((city) => city.name_ptbr);
-  return cityName;
+  const filteredJson = json.filter((city) => city.name_ptbr !== null );
+  return filteredJson;
 }
+
+getCities()
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -127,8 +126,8 @@ function App() {
                     <select>
                       <option value="">Selecione um país</option>
                       {countries.map((country, index) => (
-                        <option key={index} value={country}>
-                          {country}
+                        <option key={index} value={country.name_ptbr}>
+                          {country.name_ptbr}
                         </option>
                       ))}
                     </select>
@@ -136,8 +135,8 @@ function App() {
                     <select>
                       <option value="">Selecione uma cidade</option>
                       {cities.map((city, index) => (
-                        <option key={index} value={city}>
-                          {city}
+                        <option key={index} value={city.name_ptbr}>
+                          {city.name_ptbr}
                         </option>
                       ))}
                     </select>
@@ -173,8 +172,11 @@ const Main = styled.main`
 const Form = styled.div`
   .container {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    gap: 30px;
   }
 `;
 
@@ -266,7 +268,7 @@ const FormField = styled.div`
   option {
     background-color: #2d343b;
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 `;
 
