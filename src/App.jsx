@@ -49,7 +49,7 @@ function App() {
                   <label htmlFor="cpf">
                     CPF<i>*</i>:
                   </label>
-                  <Field type="number" name="cpf" id="cpf"></Field>
+                  <Field type="text" name="cpf" id="cpf"></Field>
                   <ErrorMessage name="cpf" />
                 </div>
               </FormField>
