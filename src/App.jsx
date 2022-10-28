@@ -19,7 +19,7 @@ function App() {
             cpf: "",
           }}
         >
-          {() => (
+          {(errors, isValid) => (
             <form>
               <FormField>
                 <h2>Dados Pessoais</h2>
@@ -65,7 +65,7 @@ function App() {
                 </select>
               </FormField>
 
-              <button type="submit">Enviar</button>
+              <button type="submit" disabled={!isValid}>Enviar</button>
             </form>
           )}
         </Formik>
