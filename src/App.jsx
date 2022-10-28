@@ -166,6 +166,7 @@ const Main = styled.main`
     font-weight: 800;
     text-align: center;
     margin-bottom: 5rem;
+    text-shadow: 0.2rem 0.2rem 0px #000;
   }
 `;
 
@@ -255,6 +256,7 @@ const FormField = styled.div`
     width: 80%;
     font-size: 2.5rem;
     margin: 0 auto;
+    border: none;
   }
 
   select:first-child {
@@ -290,7 +292,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #121212;
+    background-color: #161515ee;
     font-family: 'Montserrat', sans-serif;
   }
   ol, ul {
