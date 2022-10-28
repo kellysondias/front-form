@@ -49,7 +49,7 @@ function App() {
             cpf: "",
           }}
         >
-          {(errors, isValid) => (
+          {() => (
             <Form>
               <div className="container">
                 <FormField>
@@ -144,7 +144,7 @@ function App() {
                 </FormField>
               </div>
 
-              <button type="submit" disabled={!isValid}>
+              <button type="submit">
                 Enviar
               </button>
             </Form>
@@ -156,6 +156,7 @@ function App() {
 }
 
 const Main = styled.main`
+  margin-top: 3rem;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -164,40 +165,80 @@ const Main = styled.main`
     font-size: 5rem;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 1.3rem;
     text-shadow: 0.2rem 0.2rem 0px #000;
   }
+
+  @media (max-width: 458px) {
+    h1 {
+      font-size: 3.5rem;
+    }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
   .container {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 150px;
     margin: 0 auto;
-    gap: 30px;
+  }
+
+  button {
+    color: #1c2126;
+    background-color: #f7c411;
+    font-weight: 700;
+    font-size: 1.5rem;
+    border: none;
+    padding: 1.5rem 3rem;
+    margin: 2rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: 0.1s ease-in-out;
+  }
+
+  button:hover {
+    box-shadow: 1px 1px 10px #f7c411;
+  }
+
+  @media (max-width: 860px) {
+    .container {
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 458px) {
+    button {
+      font-size: 1.3rem;
+    }
   }
 `;
 
 const FormField = styled.div`
-  margin-bottom: 10px;
   background-color: #2d343b;
   font-weight: bold;
+  padding: 20px 30px;
+  border-radius: 0.5rem;
 
-  ::firt-child {
-    color: red;
+  :last-child {
+    min-height: 400px;
   }
 
   h2 {
-    font-size: 3.8rem;
-    background-color: #1a1f24;
+    font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
   }
 
   label {
-    font-size: 2.8rem;
+    font-size: 2rem;
   }
 
   .field {
@@ -233,22 +274,14 @@ const FormField = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 3rem auto 3rem auto;
+    margin: 3rem auto;
   }
 
   .inputs div {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 10px 0 10px 0;
-  }
-
-  .inputs div:first-child {
-    margin-top: 0;
-  }
-
-  .inputs div:last-child {
-    margin-bottom: 0;
+    margin: 10px;
   }
 
   select {
@@ -256,7 +289,7 @@ const FormField = styled.div`
     color: rgba(255, 255, 255, 0.815);
     max-width: 313px;
     width: 80%;
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 0 auto;
     border: none;
   }
@@ -269,6 +302,22 @@ const FormField = styled.div`
     background-color: #2d343b;
     color: #fff;
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 458px) {
+    max-width: 250px;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    label,select {
+      font-size: 1.5rem;
+    }
+
+    option {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -290,7 +339,6 @@ const GlobalStyle = createGlobalStyle`
     color: theme.color; 
   }
   body {
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
