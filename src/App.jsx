@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { Formik, Field, ErrorMessage } from "formik";
 import schema from "./schema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 async function getCountries() {
   const url = await fetch("https://amazon-api.sellead.com/country");
@@ -15,19 +15,29 @@ async function getCities() {
   const url = await fetch("https://amazon-api.sellead.com/city");
   const json = await url.json();
   const cityName = json.map((city) => {
-    if (city.name_ptbr !== null) return city.name_ptbr;
+    return city.name_ptbr
   });
-  return cityName;
+  console.log(cityName);
 }
+
+getCities()
 
 function App() {
 
-  useEffect(() => {
-    async function fetchCountries () {
+  const [countries, setCountries] = useState([])
+  const [cities, setCities] = useState([])
 
+  useEffect(() => {
+    async function fetchData () {
+      const countriesResponse = await getCountries()
+      const citiesResponse = await getCities()
+
+      setCountries(countriesResponse)
+      setCities(citiesResponse)
     }
-    fetchCountries()
-  })
+    fetchData()
+  }, [])
+
 
   return (
     <>
@@ -83,10 +93,12 @@ function App() {
                 <h2>Destinos de Interesse</h2>
                 <select>
                   <option value="">Selecione um país</option>
+                  {countries.map((country) => <option value={country}>{country}</option>)}
                 </select>
 
                 <select>
                   <option value="">Selecione uma cidade</option>
+                  {/* {cities.map((city) => <option value={city}>{city}</option>)} */}
                 </select>
               </FormField>
 
