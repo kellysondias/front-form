@@ -169,7 +169,12 @@ const Main = styled.main`
     text-shadow: 0.2rem 0.2rem 0px #000;
   }
 
+  @media (max-width: 860px) {
+    margin-top: 0;
+  }
+
   @media (max-width: 458px) {
+
     h1 {
       font-size: 3.5rem;
     }
