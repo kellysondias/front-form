@@ -2,8 +2,33 @@ import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { Formik, Field, ErrorMessage } from "formik";
 import schema from "./schema";
+import { useEffect } from "react";
+
+async function getCountries() {
+  const url = await fetch("https://amazon-api.sellead.com/country");
+  const json = await url.json();
+  const countryName = json.map((country) => country.name_ptbr);
+  return countryName;
+}
+
+async function getCities() {
+  const url = await fetch("https://amazon-api.sellead.com/city");
+  const json = await url.json();
+  const cityName = json.map((city) => {
+    if (city.name_ptbr !== null) return city.name_ptbr;
+  });
+  return cityName;
+}
 
 function App() {
+
+  useEffect(() => {
+    async function fetchCountries () {
+
+    }
+    fetchCountries()
+  })
+
   return (
     <>
       <GlobalStyle />
@@ -65,7 +90,9 @@ function App() {
                 </select>
               </FormField>
 
-              <button type="submit" disabled={!isValid}>Enviar</button>
+              <button type="submit" disabled={!isValid}>
+                Enviar
+              </button>
             </form>
           )}
         </Formik>
