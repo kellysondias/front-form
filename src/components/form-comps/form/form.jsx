@@ -66,7 +66,7 @@ export const Form = () => {
                   type="tel"
                   name="phone"
                   id="phone"
-                  placeholder="Insira seu número de telefone"
+                  placeholder="Insira seu número"
                 />
 
                 <Input
