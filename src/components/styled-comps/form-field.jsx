@@ -92,6 +92,14 @@ export const FormField = styled.div`
       font-size: 2rem;
     }
 
+    .error {
+      bottom: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      top: 5.9rem;
+    }
+
+
     label,select {
       font-size: 1.5rem;
     }
